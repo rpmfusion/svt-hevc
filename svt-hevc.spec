@@ -1,6 +1,6 @@
 Name:           svt-hevc
 Version:        1.4.1
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Scalable Video Technology for HEVC Encoder
 
 License:        BSD-2-Clause-Patent
@@ -51,7 +51,7 @@ This package provides %{name}-based GStreamer plug-in.
 # Remove unneeded flags
 sed -i 's|-O3)|)|' CMakeLists.txt
 # Patch build gstreamer plugin
-sed -e "s|install: true,|install: true, include_directories : '../Source/API', link_args : '-lSvtHevcEnc',|" \
+sed -e "s|install: true,|install: true, include_directories : include_directories('../Source/API'), link_args : '-lSvtHevcEnc',|" \
 -e "/svthevcenc_dep =/d" -e 's|, svthevcenc_dep||' -e "s|svthevcenc_dep.found()|true|" -i gstreamer-plugin/meson.build
 
 
@@ -93,5 +93,8 @@ popd
 %{_libdir}/gstreamer-1.0/libgstsvthevcenc.so
 
 %changelog
+* Tue Sep 17 2019 Vasiliy Glazov <vascom2@gmail.com> - 1.4.1-2
+- Correct build gstreamer plugin
+
 * Tue Sep 17 2019 Vasiliy Glazov <vascom2@gmail.com> - 1.4.1-1
 - Initial release
