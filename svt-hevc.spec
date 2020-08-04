@@ -1,6 +1,6 @@
 Name:           svt-hevc
-Version:        1.4.3
-Release:        2%{?dist}
+Version:        1.5.0
+Release:        1%{?dist}
 Summary:        Scalable Video Technology for HEVC Encoder
 
 License:        BSD-2-Clause-Patent
@@ -51,11 +51,7 @@ This package provides %{name}-based GStreamer plug-in.
 
 
 %build
-mkdir -p %{_target_platform}
-pushd %{_target_platform}
-    %cmake -G Ninja \
-    ..
-popd
+%cmake -G Ninja
 %ninja_build -C %{_target_platform}
 
 pushd gstreamer-plugin
@@ -88,6 +84,9 @@ popd
 %{_libdir}/gstreamer-1.0/libgstsvthevcenc.so
 
 %changelog
+* Tue Aug 04 2020 Vasiliy Glazov <vascom2@gmail.com> - 1.5.0-1
+- Update to 1.5.0
+
 * Wed Feb 05 2020 RPM Fusion Release Engineering <leigh123linux@gmail.com> - 1.4.3-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_32_Mass_Rebuild
 
