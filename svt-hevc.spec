@@ -1,3 +1,5 @@
+%undefine __cmake_in_source_build
+
 Name:           svt-hevc
 Version:        1.5.0
 Release:        1%{?dist}
@@ -51,7 +53,11 @@ This package provides %{name}-based GStreamer plug-in.
 
 
 %build
-%cmake -G Ninja
+%cmake -G Ninja \
+%if 0%{?rhel} && 0%{?rhel} > 7
+ -B %{_target_platform} -S .
+%endif
+
 %ninja_build -C %{_target_platform}
 
 pushd gstreamer-plugin
