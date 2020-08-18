@@ -2,7 +2,7 @@
 
 Name:           svt-hevc
 Version:        1.5.0
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Scalable Video Technology for HEVC Encoder
 
 License:        BSD-2-Clause-Patent
@@ -90,6 +90,9 @@ popd
 %{_libdir}/gstreamer-1.0/libgstsvthevcenc.so
 
 %changelog
+* Tue Aug 18 2020 RPM Fusion Release Engineering <leigh123linux@gmail.com> - 1.5.0-2
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_33_Mass_Rebuild
+
 * Tue Aug 04 2020 Vasiliy Glazov <vascom2@gmail.com> - 1.5.0-1
 - Update to 1.5.0
 
