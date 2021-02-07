@@ -2,21 +2,19 @@
 
 Name:           svt-hevc
 Version:        1.5.0
-Release:        3%{?dist}
+Release:        4%{?dist}
 Summary:        Scalable Video Technology for HEVC Encoder
 
 License:        BSD-2-Clause-Patent
 URL:            https://github.com/OpenVisualCloud/SVT-HEVC
 Source0:        %url/archive/v%{version}/SVT-HEVC-%{version}.tar.gz
-# Correct build flags and gstreamer plugin
-Patch0:         svt-hevc-build.patch
+# Correct build flags
+Patch0:         cmake.patch
 
 BuildRequires:  gcc
 BuildRequires:  cmake
 BuildRequires:  yasm
 BuildRequires:  meson
-BuildRequires:  gstreamer1-devel
-BuildRequires:  gstreamer1-plugins-base-devel
 
 Requires:       %{name}-libs%{?_isa} = %{version}-%{release}
 
@@ -41,13 +39,6 @@ Requires:       %{name}-libs%{?_isa} = %{version}-%{release}
 %description    devel
 Include files and mandatory libraries for development svt-hevc.
 
-%package -n     gstreamer1-%{name}
-Summary:        GStreamer 1.0 %{name}-based plug-in
-Requires:       gstreamer1-plugins-base%{?_isa}
-
-%description -n gstreamer1-%{name}
-This package provides %{name}-based GStreamer plug-in.
-
 %prep
 %autosetup -p1 -n SVT-HEVC-%{version}
 
@@ -60,18 +51,9 @@ This package provides %{name}-based GStreamer plug-in.
 
 %ninja_build -C %{_target_platform}
 
-pushd gstreamer-plugin
-    export LIBRARY_PATH="$PWD/../Bin/Release:$LIBRARY_PATH"
-    %meson
-    %meson_build
-popd
-
 
 %install
 %ninja_install -C %{_target_platform}
-pushd gstreamer-plugin
-    %meson_install
-popd
 
 %files
 %{_bindir}/SvtHevcEncApp
@@ -86,10 +68,11 @@ popd
 %{_libdir}/libSvtHevcEnc.so
 %{_libdir}/pkgconfig/*.pc
 
-%files -n gstreamer1-%{name}
-%{_libdir}/gstreamer-1.0/libgstsvthevcenc.so
-
 %changelog
+* Sun Feb 07 2021 Vasiliy Glazov <vascom2@gmail.com> - 1.5.0-4
+- Fix build for GCC 11
+- Remove gstreamer plugin
+
 * Thu Feb 04 2021 RPM Fusion Release Engineering <leigh123linux@gmail.com> - 1.5.0-3
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_34_Mass_Rebuild
 
