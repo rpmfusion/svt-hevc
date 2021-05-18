@@ -1,8 +1,8 @@
 %undefine __cmake_in_source_build
 
 Name:           svt-hevc
-Version:        1.5.0
-Release:        4%{?dist}
+Version:        1.5.1
+Release:        1%{?dist}
 Summary:        Scalable Video Technology for HEVC Encoder
 
 License:        BSD-2-Clause-Patent
@@ -69,6 +69,9 @@ Include files and mandatory libraries for development svt-hevc.
 %{_libdir}/pkgconfig/*.pc
 
 %changelog
+* Tue May 18 2021 Vasiliy Glazov <vascom2@gmail.com> - 1.5.1-1
+- Update to 1.5.1
+
 * Sun Feb 07 2021 Vasiliy Glazov <vascom2@gmail.com> - 1.5.0-4
 - Fix build for GCC 11
 - Remove gstreamer plugin
