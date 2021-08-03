@@ -2,7 +2,7 @@
 
 Name:           svt-hevc
 Version:        1.5.1
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Scalable Video Technology for HEVC Encoder
 
 License:        BSD-2-Clause-Patent
@@ -69,6 +69,9 @@ Include files and mandatory libraries for development svt-hevc.
 %{_libdir}/pkgconfig/*.pc
 
 %changelog
+* Tue Aug 03 2021 RPM Fusion Release Engineering <leigh123linux@gmail.com> - 1.5.1-2
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_35_Mass_Rebuild
+
 * Tue May 18 2021 Vasiliy Glazov <vascom2@gmail.com> - 1.5.1-1
 - Update to 1.5.1
 
