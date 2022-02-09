@@ -1,5 +1,3 @@
-%undefine __cmake_in_source_build
-
 Name:           svt-hevc
 Version:        1.5.1
 Release:        3%{?dist}
@@ -44,16 +42,13 @@ Include files and mandatory libraries for development svt-hevc.
 
 
 %build
-%cmake -G Ninja \
-%if 0%{?rhel} && 0%{?rhel} > 7
- -B %{_target_platform} -S .
-%endif
+%cmake -G Ninja
 
-%ninja_build -C %{_target_platform}
+%cmake_build
 
 
 %install
-%ninja_install -C %{_target_platform}
+%cmake_install
 
 %files
 %{_bindir}/SvtHevcEncApp
